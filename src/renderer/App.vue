@@ -4,15 +4,19 @@
             <template slot='page'>
                 <router-view></router-view>
             </template>
+            <template slot='aside'>
+                <BenchListProvider />
+            </template>
         </Layout>
     </div>
 </template>
 
 <script>
 import Layout from './Layout';
+import BenchListProvider from './providers/BenchListProvider';
 
 export default {
-    components: { Layout }
+    components: { Layout, BenchListProvider }
 };
 </script>
 

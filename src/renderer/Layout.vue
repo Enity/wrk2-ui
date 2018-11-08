@@ -45,6 +45,7 @@ export default {
     flex: 1 0 35%;
     min-width: 150px;
     background: linear-gradient(180deg, #252525 0%, #151515 100%);
+    padding: 40px 20px;
 }
 
 .poweredBy {

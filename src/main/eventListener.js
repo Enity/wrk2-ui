@@ -8,9 +8,11 @@ ipcMain.on(EventsEnum.START_BENCH, (event, formData) => {
     benchmark.onStart(benchData => {
         event.sender.send(EventsEnum.BENCH_STARTED, benchData);
     });
+
     benchmark.onError(err => {
         console.log(err);
     });
+
     benchmark.onFinish(benchData => {
         event.sender.send(EventsEnum.BENCH_FINISHED, benchData);
     });

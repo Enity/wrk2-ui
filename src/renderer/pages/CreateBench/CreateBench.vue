@@ -1,39 +1,56 @@
 <template>
     <div class='createBenchForm'>
-        <span>TARGET</span>
-        <input type="text" v-model="formData.target">
-        <span>Duration (sec)</span>
-        <input type="text" v-model="formData.duration">
-        <RangeSlider
-            min="10"
-            max="500"
-            step="5"
-            v-model="formData.duration"
-        />
-        <span>Connections</span>
-        <input type="text" v-model="formData.connections">
-        <RangeSlider
-            min="1"
-            max="1000"
-            step="50"
-            v-model="formData.connections"
-        />
-        <span>Requests/second</span>
-        <input type="text" v-model="formData.requests">
-        <RangeSlider
-            min="100"
-            max="5000"
-            step="100"
-            v-model="formData.requests"
-        />
-        <button @click='begin'>
+        <div class='block target-block'>
+            <span class>TARGET</span>
+            <Input 
+                width='100%'
+                v-model="formData.target"
+            />
+        </div>
+        <div class="block">
+            <RangeGroup
+                label='Duration (sec)'
+                min='10'
+                max='150'
+                step='5'
+                inputWidth='50px'
+                v-model='formData.duration'
+            />
+        </div>
+        <div class="block">
+            <RangeGroup
+                label='Connections'
+                min='100'
+                max='1000'
+                step='20'
+                inputWidth='55px'
+                v-model='formData.connections'
+            />
+        </div>
+        <div class="block">
+            <RangeGroup
+                label='Requests/sec'
+                min='200'
+                max='4000'
+                step='50'
+                inputWidth='65px'
+                v-model='formData.requests'
+            />
+        </div>
+        <Button
+            type='flat'
+            class='submit'
+            @click='begin'
+        >
             BEGIN
-        </button>
+        </Button>
     </div>
 </template>
 
 <script>
-import RangeSlider from '@/components/RangeSlider/RangeSlider.vue';
+import Input from '@/components/Input';
+import Button from '@/components/Button';
+import RangeGroup from './RangeGroup';
 import { EventsEnum } from '@root/enums/EventsEnum';
 import { ipcRenderer } from 'electron';
 
@@ -49,17 +66,37 @@ export default {
             }
         };
     },
+    components: { Input, Button, RangeGroup },
     methods: {
         begin() {
             ipcRenderer.send(EventsEnum.START_BENCH, this.formData);
         }
-    },
-    components: { RangeSlider }
+    }
 };
 </script>
 
-<style scoped> 
+<style scoped>
 .createBenchForm {
     text-align: center;
+    margin: 0 auto;
+    width: 75%;
+}
+
+.block {
+    margin-bottom: 20px;
+}
+
+.target-block {
+    margin-bottom: 30px;
+}
+
+.target-block span {
+    user-select: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.submit {
+    margin-top: 10px;
 }
 </style>

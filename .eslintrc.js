@@ -22,6 +22,7 @@ module.exports = {
     'indent': ['error', 4],
     // allow async-await
     'generator-star-spacing': 0,
+    'no-unused-vars': 1,
     'semi': ['error', 'always'],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0

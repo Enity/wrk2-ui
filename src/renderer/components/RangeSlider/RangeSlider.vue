@@ -1,21 +1,21 @@
 <template>
-    <span class='range-slider' :class='{ disabled }'>
+    <span class='slider' :style='{ width }' :class='{ disabled }'>
         <drag-helper
             v-bind:disabled='disabled'
             @dragstart='dragStart'
             @drag='drag'
             @dragend='dragEnd'
         >
-            <span ref='inner' class='range-slider-inner'>
+            <span ref='inner' class='slider-inner'>
                 <input
-                    class='range-slider-hidden'
+                    class='slider-hidden'
                     type='text'
                     :name='name'
                     :value='actualValue'
                     :disabled='disabled'
                 >
-                <span class='range-slider-rail'></span>
-                <span class='range-slider-knob' ref='knob' :style='{ left: valuePercent + "%" }' />
+                <span class='slider-rail'></span>
+                <span class='slider-knob' ref='knob' :style='{ left: valuePercent + "%" }' />
             </span>
         </drag-helper>
     </span>
@@ -46,6 +46,10 @@ export default {
         step: {
             type: [String, Number],
             default: 1
+        },
+        width: {
+            type: String,
+            default: '300px'
         }
     },
 
@@ -157,26 +161,25 @@ export default {
 };
 </script>
 
-<style>
-.range-slider {
+<style scoped>
+.slider {
     display: inline-block;
     height: 25px;
-    width: 300px;
 }
 
-.range-slider.disabled {
+.slider.disabled {
     opacity: 0.5;
 }
 
-.range-slider-inner {
+.slider-inner {
     display: inline-block;
     position: relative;
     height: 100%;
     width: 100%;
 }
 
-.range-slider-rail,
-.range-slider-fill {
+.slider-rail,
+.slider-fill {
     display: block;
     position: absolute;
     top: 50%;
@@ -186,7 +189,7 @@ export default {
     width: 100%;
 }
 
-.range-slider-knob {
+.slider-knob {
     display: block;
     position: absolute;
     top: 50%;
@@ -200,7 +203,7 @@ export default {
     cursor: pointer;
 }
 
-.range-slider-hidden {
+.slider-hidden {
     display: none;
 }
 </style>
