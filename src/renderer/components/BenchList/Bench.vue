@@ -1,5 +1,5 @@
 <template>
-    <div class="bench">
+    <div class="bench" @click='$emit("click", id)'>
         <div class="target">{{ target }}</div>
         <div :style='innerStyle' class="inner"></div>
     </div>
@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bench {
     width: 100%;
     height: 26px;

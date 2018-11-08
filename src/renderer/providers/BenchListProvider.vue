@@ -1,6 +1,9 @@
 <template>
     <div>
-        <BenchList :list='benchmarks'/>
+        <BenchList
+            :list='benchmarks'
+            @selected='benchSelected'
+        />
     </div>
 </template>
 
@@ -22,7 +25,11 @@ export default {
     methods: {
         ...mapActions([
             ActionsEnum.SUBSCRIBE
-        ])
+        ]),
+
+        benchSelected(benchId) {
+            this.$router.push('/results');
+        }
     }
 };
 </script>

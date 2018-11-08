@@ -11,6 +11,11 @@ export default new Router({
             component: require('@/pages/CreateBench/CreateBench.vue').default
         },
         {
+            path: '/results',
+            name: 'Results',
+            component: require('@/pages/BenchResults/BenchResults.vue').default
+        },
+        {
             path: '*',
             redirect: '/'
         }

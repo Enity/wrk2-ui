@@ -1,6 +1,8 @@
 <template>
     <div class="benchList">
-        <div class='addBtn'></div>
+        <router-link to='/'>
+            <div class='addBtn'></div>
+        </router-link>
         <transition-group
             name="list-transition" 
             class='list'
@@ -12,6 +14,7 @@
                 :target='l.target'
                 :finished='l.finished'
                 :progress='l.progress'
+                @click='$emit("selected", $event)'
             />
         </transition-group>
     </div>
@@ -74,7 +77,7 @@ export default {
 }
 
 .list > div {
-    transition: .5s ease-out;
+    transition: .3s ease-out;
 }
 
 .list-transition-enter, .list-transition-leave-to {

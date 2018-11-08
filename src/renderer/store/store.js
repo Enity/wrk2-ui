@@ -11,7 +11,7 @@ const state = {
 
 const mutations = {
     createBench(state, { id, duration, target }) {
-        state.benchmarks.push({
+        state.benchmarks.unshift({
             id,
             duration,
             target,

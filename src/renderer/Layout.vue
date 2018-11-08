@@ -39,6 +39,7 @@ export default {
 .leftSide {
     flex: 1 1 65%;
     padding: 35px;
+    overflow-y: scroll;
 }
 
 .rightSide {
@@ -60,5 +61,27 @@ export default {
 
 .poweredBy:hover {
     color: #808080;
+}
+
+/* scrollbar style */
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(56, 56, 56);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 </style>
