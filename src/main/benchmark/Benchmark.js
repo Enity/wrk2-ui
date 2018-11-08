@@ -3,29 +3,25 @@ import { EventSource } from '../abstract/EventSource';
 import { BenchmarkResult } from './BenchmarkResult';
 
 export class Benchmark extends EventSource {
-    constructor(command, id, duration) {
+    constructor(command, benchData) {
         super();
         this.command = command;
-        this.id = id;
-        this.duration = duration;
+        this.benchData = benchData;
     }
 
     start() {
-        this._invokeListener('onStart', {
-            id: this.id,
-            duration: this.duration
-        });
+        this._invokeListener('onStart', this.benchData);
 
         exec(this.command, (err, stdout) => {
             if (err) {
                 this._invokeListener('onError', {
-                    id: this.id,
+                    ...this.benchData,
                     errorMessage: err.message.split('\n').slice(1).join(' ')
                 });
             } else {
                 const result = new BenchmarkResult(this._extractCustomReport(stdout));
                 this._invokeListener('onFinish', {
-                    id: this.id,
+                    ...this.benchData,
                     result
                 });
             }

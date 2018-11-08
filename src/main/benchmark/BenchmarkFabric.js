@@ -11,7 +11,7 @@ export class BencmarkFabric {
     static getBenchmark(formData) {
         const command = this._getWrkLibPath() + this._getArgStringFromForm(formData);
         const id = crypto.randomBytes(3 * 4).toString('base64');
-        return new Benchmark(command, id, formData.duration);
+        return new Benchmark(command, { ...formData, id });
     }
 
     static async testRun() {

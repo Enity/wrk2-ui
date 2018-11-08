@@ -1,14 +1,19 @@
 <template>
     <div class="benchList">
         <div class='addBtn'></div>
-        <div class='list'>
+        <transition-group
+            name="list-transition" 
+            class='list'
+            tag="div"
+        >
             <Bench v-for='l of list'
+                :id='l.id'
                 :key='l.id'
                 :target='l.target'
                 :finished='l.finished'
                 :progress='l.progress'
             />
-        </div>
+        </transition-group>
     </div>
 </template>
 
@@ -65,6 +70,20 @@ export default {
 }
 
 .list > div:not(:first-child) {
-    margin-top: 8px;
+    margin-top: 10px;
 }
+
+.list > div {
+    transition: .5s ease-out;
+}
+
+.list-transition-enter, .list-transition-leave-to {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+.list-transition-leave-active {
+    position: absolute;
+}
+
 </style>

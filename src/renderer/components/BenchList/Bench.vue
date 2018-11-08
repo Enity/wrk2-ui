@@ -8,6 +8,7 @@
 <script>
 export default {
     props: {
+        id: String,
         target: String,
         error: Boolean,
         finished: Boolean,
@@ -30,6 +31,7 @@ export default {
     height: 26px;
     user-select: none;
     display: flex;
+    padding: 0 5px;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -40,6 +42,9 @@ export default {
 
 .target {
     z-index: 5;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .inner {
@@ -47,6 +52,7 @@ export default {
     left: 0;
     top: 0;
     border-radius: inherit;
+    transition: width .5s ease-out;
     height: 100%;
 }
 </style>
