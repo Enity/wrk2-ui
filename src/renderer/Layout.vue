@@ -40,6 +40,7 @@ export default {
     flex: 1 1 65%;
     padding: 35px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .rightSide {

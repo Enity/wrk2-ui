@@ -12,7 +12,9 @@
                 {{ connections }} connections {{ requests }} requests
             </span>
         </div>
-        <div class="body"></div>
+        <div class="body">
+            {{ JSON.stringify(result)}}
+        </div>
     </div>
 </template>
 
@@ -25,7 +27,7 @@ export default {
         connections: Number,
         duration: Number,
         threads: Number,
-        results: Object
+        result: Object
     },
     computed: {
         headColor() {
