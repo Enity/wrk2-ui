@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron';
-import { EventsEnum } from '@root/enums/EventsEnum';
+import { EventsEnum } from '@root/enums';
 import { BencmarkFabric } from './benchmark/BenchmarkFabric';
 import { BenchmarkTimer } from './benchmark/BenchmarkTimer';
 

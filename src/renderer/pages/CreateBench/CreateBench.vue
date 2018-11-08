@@ -40,7 +40,7 @@
         <Button
             type='flat'
             class='submit'
-            @click='begin'
+            @click='submit'
         >
             BEGIN
         </Button>
@@ -51,8 +51,8 @@
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 import RangeGroup from './RangeGroup';
-import { EventsEnum } from '@root/enums/EventsEnum';
-import { ipcRenderer } from 'electron';
+import { ActionsEnum } from '@root/enums';
+import { mapActions } from 'vuex';
 
 export default {
     data() {
@@ -68,8 +68,10 @@ export default {
     },
     components: { Input, Button, RangeGroup },
     methods: {
-        begin() {
-            ipcRenderer.send(EventsEnum.START_BENCH, this.formData);
+        ...mapActions([ ActionsEnum.CREATE_BENCH ]),
+
+        submit() {
+            this[ActionsEnum.CREATE_BENCH](this.formData);
         }
     }
 };
