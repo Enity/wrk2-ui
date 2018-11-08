@@ -21,7 +21,8 @@ export class BencmarkFabric {
     }
 
     static _getWrkLibPath() {
-        const pathTolib = path.resolve(__static, 'third-party/wrk');
+        const platform = process.platform;
+        const pathTolib = path.resolve(__static, `third-party/${platform}/wrk`);
         return pathTolib;
     }
 
