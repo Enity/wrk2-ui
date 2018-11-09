@@ -1,7 +1,7 @@
 export class BenchmarkResult {
     constructor(rawData) {
         this.error = false;
-        this.errors = [];
+        this.errorMsg = [];
         this.summary = {};
         this.requests = {};
         this.latency = {};
@@ -27,7 +27,7 @@ export class BenchmarkResult {
             }, {});
         } catch (error) {
             this.error = true;
-            this.errors.push('Report parsing error');
+            this.errorMsg = 'Report parsing error';
         }
     }
 

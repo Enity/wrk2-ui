@@ -1,6 +1,6 @@
 <template>
     <div class="bench" @click='$emit("click", id)'>
-        <div class="target">{{ target }}</div>
+        <div class="target">{{ data.target }}</div>
         <div :style='innerStyle' class="inner"></div>
     </div>
 </template>
@@ -9,16 +9,14 @@
 export default {
     props: {
         id: String,
-        target: String,
-        error: Boolean,
-        finished: Boolean,
-        progress: Number
+        data: Object,
+        state: Object
     },
     computed: {
         innerStyle() {
             return {
-                'width': this.finished ? '100%' : this.progress + '%',
-                'background-color': this.finished ? '#2A742D' : '#937415'
+                'width': this.state.finished ? '100%' : this.state.progress + '%',
+                'background-color': this.state.finished ? '#2A742D' : '#937415'
             };
         }
     }

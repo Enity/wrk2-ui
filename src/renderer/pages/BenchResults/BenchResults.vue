@@ -3,12 +3,8 @@
         <ResultCard
             v-for='b of benchmarks'
             :key='b.id'
-            :finished='b.finished'
-            :target='b.target'
-            :connections='b.connections'
-            :duration='b.duration'
-            :requests='b.requests'
-            :threads='b.threads'
+            :data='b.data'
+            :state='b.state'
             :result='b.result'
         />
     </div>

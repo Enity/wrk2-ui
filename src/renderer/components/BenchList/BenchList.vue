@@ -11,9 +11,8 @@
             <Bench v-for='l of list'
                 :id='l.id'
                 :key='l.id'
-                :target='l.target'
-                :finished='l.finished'
-                :progress='l.progress'
+                :data='l.data'
+                :state='l.state'
                 @click='$emit("selected", $event)'
             />
         </transition-group>

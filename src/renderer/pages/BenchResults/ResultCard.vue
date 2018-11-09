@@ -5,11 +5,11 @@
             :style='{ background: headColor }'
         >
             <span class="target">
-                {{ target }}
+                {{ data.target }}
             </span>
             <span class="settings">
-                {{ duration }} sec {{ threads }} threads
-                {{ connections }} connections {{ requests }} requests
+                {{ data.duration }} sec {{ data.threads }} threads
+                {{ data.connections }} connections {{ data.requests }} requests
             </span>
         </div>
         <div class="body">
@@ -21,17 +21,13 @@
 <script>
 export default {
     props: {
-        target: String,
-        requests: Number,
-        finished: Boolean,
-        connections: Number,
-        duration: Number,
-        threads: Number,
+        data: Object,
+        state: Object,
         result: Object
     },
     computed: {
         headColor() {
-            return this.finished ? '#1F4429' : '#44421F';
+            return this.state.finished ? '#1F4429' : '#44421F';
         }
     }
 };

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { loggerPlugin } from './loggerPlugin';
 import { EventsEnum, ActionsEnum } from '@root/enums';
 import { ipcRenderer } from 'electron';
 
@@ -10,13 +11,8 @@ const state = {
 };
 
 const mutations = {
-    createBench(state, { id, duration, target }) {
-        state.benchmarks.unshift({
-            id,
-            duration,
-            target,
-            progress: 0
-        });
+    createBench(state, benchData) {
+        state.benchmarks.unshift(benchData);
     },
 
     updateBench(state, { id, benchData }) {
@@ -35,20 +31,17 @@ const actions = {
             commit('createBench', benchData);
         });
 
-        ipcRenderer.on(EventsEnum.BENCH_TICK, (event, { id, progress }) => {
+        ipcRenderer.on(EventsEnum.BENCH_TICK, (event, benchData) => {
             commit('updateBench', {
-                id,
-                benchData: { progress }
+                id: benchData.id,
+                benchData
             });
         });
 
         ipcRenderer.on(EventsEnum.BENCH_FINISHED, (event, benchData) => {
             commit('updateBench', {
                 id: benchData.id,
-                benchData: {
-                    ...benchData,
-                    finished: true
-                }
+                benchData
             });
         });
     },
@@ -59,6 +52,7 @@ const actions = {
 };
 
 export default new Vuex.Store({
+    plugins: [loggerPlugin],
     state,
     actions,
     mutations

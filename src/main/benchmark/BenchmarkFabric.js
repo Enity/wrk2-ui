@@ -8,13 +8,13 @@ const execFile = util.promisify(require('child_process').execFile);
  * @static
  */
 export class BencmarkFabric {
-    static getBenchmark(formData) {
+    static create(formData) {
         const command = {
             path: this._getWrkLibPath(),
             args: this._getArgStringFromForm(formData)
         };
         const id = crypto.randomBytes(3 * 4).toString('base64');
-        return new Benchmark(command, { ...formData, id });
+        return new Benchmark(command, id, formData);
     }
 
     static async testRun() {
