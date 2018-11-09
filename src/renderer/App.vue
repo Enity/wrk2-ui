@@ -2,7 +2,9 @@
     <div id='app'>
         <Layout>
             <template slot='page'>
-                <router-view></router-view>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
             </template>
             <template slot='aside'>
                 <BenchListProvider />
@@ -39,6 +41,7 @@ body, html {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #f5f5f5;
+    font-size: 16px;
     height: 100%;
     overflow: hidden;
 }
