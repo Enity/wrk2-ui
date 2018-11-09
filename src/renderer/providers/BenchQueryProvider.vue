@@ -1,6 +1,6 @@
 <template>
     <div>
-        <BenchList
+        <BenchQuery
             :list='benchmarks'
             @selected='benchSelected'
         />
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import BenchList from '@/components/BenchList/BenchList';
+import BenchQuery from '@/components/BenchQuery/BenchQuery';
 import { ActionsEnum } from '@root/enums';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-    components: { BenchList },
+    components: { BenchQuery },
     mounted() {
         this[ActionsEnum.SUBSCRIBE]();
     },

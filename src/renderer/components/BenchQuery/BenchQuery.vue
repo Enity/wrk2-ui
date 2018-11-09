@@ -1,5 +1,5 @@
 <template>
-    <div class="benchList">
+    <div class="benchQuery">
         <router-link to='/'>
             <div class='addBtn'></div>
         </router-link>
@@ -21,6 +21,7 @@
 
 <script>
 import Bench from './Bench';
+
 export default {
     props: {
         list: Array

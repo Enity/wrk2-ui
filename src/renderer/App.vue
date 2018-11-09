@@ -7,7 +7,7 @@
                 </keep-alive>
             </template>
             <template slot='aside'>
-                <BenchListProvider />
+                <BenchQueryProvider />
             </template>
         </Layout>
     </div>
@@ -15,10 +15,10 @@
 
 <script>
 import Layout from './Layout';
-import BenchListProvider from './providers/BenchListProvider';
+import BenchQueryProvider from './providers/BenchQueryProvider';
 
 export default {
-    components: { Layout, BenchListProvider }
+    components: { Layout, BenchQueryProvider }
 };
 </script>
 
