@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .addBtn {
     width: 100%;
     height: 25px;
@@ -43,41 +43,36 @@ export default {
     background-position: left top, left bottom, left top, right top;
     background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
     background-size: 15px 1px, 15px 1px, 1px 15px, 1px 15px;
-}
-
-.addBtn::before, .addBtn::after {
-    content: '';
-    position: absolute;
-    width: 14px;
-    top: 50%;
-    left: 50%;
-    margin-left: -7px;
-    height: 1px;
-    background-color: #a5a5a5;
-}
-
-.addBtn::before {
-    transform: rotate(90deg);
-}
-
-.addBtn:hover {
-    opacity: .85;
-}
-
-.addBtn:active {
-    opacity: 1;
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        width: 14px;
+        top: 50%;
+        left: 50%;
+        margin-left: -7px;
+        height: 1px;
+        background-color: #a5a5a5;
+    }
+    &:before {
+        transform: rotate(90deg);
+    }
+    &:hover {
+        opacity: .85;
+    }
+    &:active {
+        opacity: 1;
+    }
 }
 
 .list {
     margin-top: 10px;
-}
-
-.list > div:not(:first-child) {
-    margin-top: 10px;
-}
-
-.list > div {
-    transition: .3s ease-out;
+    > div {
+        transition: .3s ease-out;
+    }
+    > div:not(:first-child) {
+        margin-top: 10px;
+    }
+    
 }
 
 .list-transition-enter, .list-transition-leave-to {

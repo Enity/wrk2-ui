@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .createBenchForm {
     text-align: center;
     margin: 0 auto;
@@ -90,12 +90,11 @@ export default {
 
 .target-block {
     margin-bottom: 30px;
-}
-
-.target-block span {
-    user-select: none;
-    display: block;
-    margin-bottom: 10px;
+    span {
+        user-select: none;
+        display: block;
+        margin-bottom: 10px;
+    }
 }
 
 .submit {

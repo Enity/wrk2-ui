@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .btn {
     font-size: 24px;
     cursor: pointer;
@@ -36,13 +36,11 @@ export default {
     background: transparent;
     border: none;
     outline: none;
-}
-
-.flat:hover {
-    color: rgb(255, 163, 43);
-}
-
-.flat:active {
-    text-shadow: 0 0 4px rgb(255, 163, 43);
+    &:hover {
+        color: rgb(255, 163, 43);
+    }
+    &:active {
+        text-shadow: 0 0 4px rgb(255, 163, 43);
+    }
 }
 </style>

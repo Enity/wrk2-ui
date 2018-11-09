@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .rangeGroup {
     width: 100%;
 }
@@ -56,14 +56,13 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+    &:not(:first-child) {
+        margin-top: 12px;
+    }
 
-.row:not(:first-child) {
-    margin-top: 12px;
-}
-
-.row .label {
-    margin-left: 5px;
-    user-select: none;
+    .label {
+        margin-left: 5px;
+        user-select: none;
+    }
 }
 </style>

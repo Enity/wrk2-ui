@@ -37,13 +37,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .resultCard {
     width: 100%;
     min-height: 200px;
     background-color: #1D1D1D;
     border: 2px solid #303030;
 }
+
 .head {
     height: 35px;
     padding: 0 10px;
@@ -52,9 +53,11 @@ export default {
     font-size: 14px;
     justify-content: space-between;
 }
+
 .target {
     color: #DADADA;
 }
+
 .settings {
     color: #ACACAC;
 }

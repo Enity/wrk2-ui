@@ -44,6 +44,7 @@ export default {
     font-size: 16px;
     color: inherit;
 }
+
 .centered {
     text-align: center;
 }

@@ -28,8 +28,10 @@ export default {
 };
 </script>
 
-<style scoped>
-.benchResults > div:not(:first-child) {
-    margin-top: 15px;
+<style scoped lang='scss'>
+.benchResults {
+    > div:not(:first-child) {
+        margin-top: 15px;
+    }
 }
 </style>
