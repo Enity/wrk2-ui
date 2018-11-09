@@ -4,7 +4,6 @@ import App from './App';
 import router from './router';
 import store from './store/store';
 
-if (!process.env.IS_WEB) Vue.use(require('vue-electron'));
 if (process.env.NODE_ENV !== 'development') {
     Vue.config.devtools = true;
 }
