@@ -11,6 +11,8 @@ export class EventSource {
     }
 
     _invokeListener(name, ...args) {
-        this.listeners[name].forEach(fn => fn(...args));
+        if (this.listeners.hasOwnProperty(name)) {
+            this.listeners[name].forEach(fn => fn(...args));
+        }
     }
 };
