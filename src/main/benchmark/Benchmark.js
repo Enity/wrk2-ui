@@ -12,21 +12,29 @@ export class Benchmark extends EventSource {
             error: false,
             errorMsg: '',
             progress: 0,
-            finished: false
+            finished: false,
+            stopped: false
         };
         this.result = {};
         this._command = command;
         this._timer = new BenchmarkTimer(benchData.duration * 1000);
+        this._process = null;
     }
 
     start() {
         this._invokeListener('onStart', this._getPublicFields());
         this._startTimer();
 
-        execFile(this._command.path, this._command.args, (err, stdout) => {
+        this._process = execFile(this._command.path, this._command.args, (err, stdout) => {
             if (err) this._handleError(err);
             else this._handleFinish(stdout);
         });
+    }
+
+    stop() {
+        this._process.kill();
+        this.state.stopped = true;
+        this._invokeListener('onStop', this._getPublicFields());
     }
 
     onStart(fn) {
@@ -43,6 +51,10 @@ export class Benchmark extends EventSource {
 
     onTick(fn) {
         this._addListener(fn, 'onTick');
+    }
+
+    onStop(fn) {
+        this._addListener(fn, 'onStop');
     }
 
     _handleError(err) {
