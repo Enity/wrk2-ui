@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { EventSource } from '../abstract/EventSource';
 import { BenchmarkResult } from './BenchmarkResult';
 
@@ -12,7 +12,7 @@ export class Benchmark extends EventSource {
     start() {
         this._invokeListener('onStart', this.benchData);
 
-        exec(this.command, (err, stdout) => {
+        execFile(this.command.path, this.command.args, (err, stdout) => {
             if (err) {
                 this._invokeListener('onError', {
                     ...this.benchData,
