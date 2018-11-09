@@ -1,7 +1,19 @@
 <template>
-    <div class="bench" @click='$emit("click", id)'>
-        <div class="target">{{ data.target }}</div>
-        <div :style='innerStyle' class="inner"></div>
+    <div 
+        class="bench"
+        @click='$emit("click", id)'
+    >
+        <div class="target">
+            {{ data.target }}
+        </div>
+        <div
+            :style='innerStyle'
+            class="inner">
+        </div>
+        <span
+            @click='emit("cancel", id)'
+            class='cancelBtn'
+        ></span>
     </div>
 </template>
 
@@ -23,7 +35,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .bench {
     width: 100%;
     height: 26px;
@@ -52,5 +64,26 @@ export default {
     border-radius: inherit;
     transition: width .5s ease-out;
     height: 100%;
+}
+
+.cancelBtn {
+    position: absolute;
+    width: 10px;
+    height: 5px;
+    right: 10px;
+    top: 50%;
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 15px;
+        background-color: #333;
+    }
+    &:before {
+        transform: rotate(138deg);
+    }
+    &:after {
+        transform: rotate(-138deg);
+    }
 }
 </style>
