@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from 'electron';
-import { BenchmarksService } from './benchmarksService';
+import { BenchmarksService } from './services/benchmarksService';
 
 let mainWindow;
 /**

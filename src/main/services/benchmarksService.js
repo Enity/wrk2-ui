@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 import { EventsEnum } from '@root/enums';
-import { BencmarkFabric } from './benchmark/BenchmarkFabric';
+import { BencmarkFabric } from '../benchmark/BenchmarkFabric';
 
 export class BenchmarksService {
     constructor() {
