@@ -44,6 +44,13 @@ const actions = {
                 benchData
             });
         });
+
+        ipcRenderer.on(EventsEnum.BENCH_ERROR, (event, benchData) => {
+            commit('updateBench', {
+                id: benchData.id,
+                benchData
+            });
+        });
     },
 
     [ActionsEnum.CREATE_BENCH](context, formData) {

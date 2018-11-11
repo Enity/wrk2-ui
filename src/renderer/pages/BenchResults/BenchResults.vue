@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ResultCard from './ResultCard';
+import ResultCard from './ResultCard/ResultCard';
 import { mapState } from 'vuex';
 
 export default {

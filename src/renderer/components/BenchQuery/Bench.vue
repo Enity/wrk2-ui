@@ -10,10 +10,11 @@
             :style='innerStyle'
             class="inner">
         </div>
-        <span
+        <!-- FUTURE -->
+        <!-- <span
             @click='emit("cancel", id)'
             class='cancelBtn'
-        ></span>
+        ></span> -->
     </div>
 </template>
 
@@ -26,9 +27,13 @@ export default {
     },
     computed: {
         innerStyle() {
+            let bgc;
+            if (this.state.error) bgc = '#8E1A2E';
+            else if (this.state.finished) bgc = '#2A742D';
+            else bgc = '#937415';
             return {
                 'width': this.state.finished ? '100%' : this.state.progress + '%',
-                'background-color': this.state.finished ? '#2A742D' : '#937415'
+                'background-color': bgc
             };
         }
     }
