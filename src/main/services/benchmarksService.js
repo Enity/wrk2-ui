@@ -20,7 +20,7 @@ export class BenchmarksService {
             });
 
             b.onError(benchData => {
-                console.log(benchData);
+                event.sender.send(EventsEnum.BENCH_ERROR, benchData);
             });
 
             b.onFinish(benchData => {

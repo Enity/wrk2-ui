@@ -1,7 +1,5 @@
 export class BenchmarkResult {
     constructor(rawData) {
-        this.error = false;
-        this.errorMsg = [];
         this.summary = {};
         this.requests = {};
         this.latency = {};
@@ -18,7 +16,8 @@ export class BenchmarkResult {
                 requests: summary.requests,
                 size: this._formatBytes(summary.bytes),
                 requestPerSecond: (summary.requests / duration).toFixed(2),
-                dataPerSecond: this._formatBytes((summary.bytes / duration))
+                dataPerSecond: this._formatBytes((summary.bytes / duration)),
+                errors: summary.errors
             };
 
             this.latency = Object.keys(latency).reduce((accum, key) => {
@@ -26,8 +25,7 @@ export class BenchmarkResult {
                 return accum;
             }, {});
         } catch (error) {
-            this.error = true;
-            this.errorMsg = 'Report parsing error';
+            throw error;
         }
     }
 
@@ -36,10 +34,16 @@ export class BenchmarkResult {
         var c = 1024;
         var e = ['Bytes', 'Kb', 'Mb', 'Gb', 'Tb'];
         var f = Math.floor(Math.log(bytes) / Math.log(c));
-        return parseFloat((bytes / Math.pow(c, f)).toFixed(2)) + '' + e[f];
+        return {
+            value: parseFloat((bytes / Math.pow(c, f)).toFixed(2)),
+            unit: e[f]
+        };
     }
 
     _formatMicroseconds(us) {
-        return (us / 1000).toFixed(2) + 'ms';
+        return {
+            value: (us / 1000).toFixed(2),
+            unit: 'ms'
+        };
     }
 }

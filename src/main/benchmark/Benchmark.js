@@ -69,8 +69,14 @@ export class Benchmark extends EventSource {
         this._timer.stop();
         this.state.finished = true;
         this.state.progress = 100;
-        this.result = new BenchmarkResult(this._extractCustomReport(stdout));
-        this._invokeListener('onFinish', this._getPublicFields());
+        try {
+            this.result = new BenchmarkResult(this._extractCustomReport(stdout));
+        } catch (error) {
+            this.state.error = true;
+            this.state.errorMsg = 'Result parsing error';
+        } finally {
+            this._invokeListener('onFinish', this._getPublicFields());
+        }
     }
 
     _startTimer() {
