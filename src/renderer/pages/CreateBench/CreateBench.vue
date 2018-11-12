@@ -58,9 +58,9 @@ export default {
     data() {
         return {
             formData: {
-                target: 'http://localhost/phpmyadmin',
+                target: 'http://localhost',
                 threads: 2,
-                duration: 5,
+                duration: 20,
                 connections: 300,
                 requests: 2000
             }
