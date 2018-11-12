@@ -1,6 +1,6 @@
 {
     "name": "http-bench-app",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "author": "boroda <enity.w@gmail.com>",
     "description": "simple gui over wrk2",
     "license": "MIT",

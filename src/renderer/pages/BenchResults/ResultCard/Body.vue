@@ -1,6 +1,6 @@
 <template>
     <div class="resultBody">
-        <div class="resRow">
+        <div class="resRow top">
             <div class="resBlock">
                 <span class="resBlockHead">REQUESTS</span>
                 <div class="resBlockBody">
@@ -23,6 +23,32 @@
                 </div>
             </div>
         </div>
+        <div class="resRow">
+            <span class='article'>Total:</span>
+            <p>
+                {{ result.summary.requests }} requests in
+                {{ result.summary.duration }},
+                {{ result.summary.size.value }} {{ result.summary.size.unit }} read.
+            </p>
+        </div>
+        <div class="resRow">
+            <span class='article'>Errors:</span>
+            <p 
+                class='errorUnit'
+                v-for='(err, i) of errors' 
+                :key='i'
+            >
+                <span
+                    :class='{
+                        warnErr: err.warn,
+                        criticalErr: err.critical
+                    }'
+                >
+                    {{ err.value }}
+                </span>
+                {{ err.title }}
+            </p>
+        </div>
     </div>
 </template>
 
@@ -30,6 +56,20 @@
 export default {
     props: {
         result: Object
+    },
+    computed: {
+        errors() {
+            const { errors } = this.result.summary;
+            return Object.keys(errors).map(key => {
+                const value = errors[key];
+                return {
+                    title: key,
+                    value,
+                    critical: value > 250,
+                    warn: value > 100
+                };
+            });
+        }
     }
 };
 </script>
@@ -39,12 +79,17 @@ export default {
     width: 100%;
     height: 100%;
     padding: 10px 20px;
-    color: #E2E2E2;
 }
 
 .resRow {
     display: flex;
-    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #d6d6d6;
+    &.top {
+        color: #E2E2E2;
+        justify-content: space-between;
+        margin-bottom: 25px;
+    }
 }
 
 .resBlock {
@@ -68,5 +113,21 @@ export default {
         color: #7E7D7D;
         margin-left: 2px;
     }
+}
+
+.article {
+    margin-right: 10px;
+}
+
+.errorUnit:not(:last-child) {
+    margin-right: 5px;
+}
+
+.warnErr {
+    color: #D5C95C;
+}
+
+.criticalErr {
+    color: #C64848;
 }
 </style>
