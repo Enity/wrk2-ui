@@ -79,7 +79,6 @@ export default {
 
 .body {
     display: flex;
-    height: 180px;
     justify-content: center;
     align-items: center;
 }

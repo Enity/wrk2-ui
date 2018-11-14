@@ -1,9 +1,10 @@
 <template>
     <button
         class='btn'
-        :class='style'
+        :class='classComp'
         @click='$emit("click")'
     >
+        <span v-if='type === "dashes"'>...</span>
         <slot></slot>
     </button>
 </template>
@@ -11,12 +12,16 @@
 <script>
 export default {
     props: {
-        type: String
+        type: {
+            type: String,
+            default: 'flat'
+        }
     },
     computed: {
-        style() {
+        classComp() {
             return {
-                'flat': this.type === 'flat'
+                'flat': this.type === 'flat',
+                'dashes': this.type === 'dashes'
             };
         }
     }
@@ -41,6 +46,28 @@ export default {
     }
     &:active {
         text-shadow: 0 0 4px rgb(255, 163, 43);
+    }
+}
+
+.dashes {
+    background: transparent;
+    border: none;
+    outline: none;
+    position: relative;
+    height: 20px;
+    width: 25px;
+    color: #6A6A6A;
+    & > span {
+        pointer-events: none;
+        position: absolute;
+        top: -7px;
+        left: 0;
+        height: 0.5em;
+        font-size: 26px;
+        font-weight: bold;
+    }
+    &:hover {
+        color: #cacaca;
     }
 }
 </style>

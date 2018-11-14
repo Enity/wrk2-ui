@@ -49,14 +49,37 @@
                 {{ err.title }}
             </p>
         </div>
+        <div class="resRow">
+            <Button
+                @click='rawOpen = !rawOpen'
+                type='dashes'
+                title='Raw result'
+            />
+        </div>
+        <div
+            v-if='rawOpen'
+            class="resRow"
+        >
+            <div class="rawResult">
+                {{ result.raw }}
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import Button from '@/components/Button';
+
 export default {
+    data() {
+        return {
+            rawOpen: false
+        };
+    },
     props: {
         result: Object
     },
+    components: { Button },
     computed: {
         errors() {
             const { errors } = this.result.summary;
@@ -77,7 +100,6 @@ export default {
 <style scoped lang='scss'>
 .resultBody {
     width: 100%;
-    height: 100%;
     padding: 10px 20px;
 }
 
@@ -121,6 +143,17 @@ export default {
 
 .errorUnit:not(:last-child) {
     margin-right: 5px;
+}
+
+.rawResult {
+    margin-top: 5px;
+    background-color: #171717;
+    width: 100%;
+    border: 1px solid #242424;
+    font-size: 14px;
+    padding: 0 14px 14px 14px;
+    white-space: pre-line;
+    line-height: 1.3em;
 }
 
 .warnErr {
