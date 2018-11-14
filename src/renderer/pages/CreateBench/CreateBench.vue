@@ -9,6 +9,16 @@
         </div>
         <div class="block">
             <RangeGroup
+                label='Threads'
+                min='1'
+                max='15'
+                step='1'
+                inputWidth='30px'
+                v-model='formData.threads'
+            />
+        </div>
+        <div class="block">
+            <RangeGroup
                 label='Duration (sec)'
                 min='10'
                 max='150'

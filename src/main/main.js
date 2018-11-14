@@ -17,9 +17,9 @@ export class Main {
                 ? `http://localhost:9080`
                 : `file://${__dirname}/index.html`;
         mainWindow = new BrowserWindow({
-            height: 500,
+            height: 550,
             useContentSize: true,
-            width: 1000
+            width: 900
         });
 
         mainWindow.loadURL(winURL);
