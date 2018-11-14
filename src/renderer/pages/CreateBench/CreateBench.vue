@@ -62,7 +62,18 @@ export default {
                 threads: 2,
                 duration: 20,
                 connections: 300,
-                requests: 2000
+                requests: 2000,
+                hasAdvanced: true,
+                advanced: {
+                    type: 'POST',
+                    body: {
+                        name: 'asdsa',
+                        age: 'asdsad'
+                    },
+                    headers: {
+                        'XSSS': 'aSDSADASDDAZ'
+                    }
+                }
             }
         };
     },

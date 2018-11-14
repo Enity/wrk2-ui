@@ -8,8 +8,8 @@ export class BenchmarksService {
     }
 
     initListeners() {
-        ipcMain.on(EventsEnum.START_BENCH, (event, formData) => {
-            const b = BencmarkFabric.create(formData);
+        ipcMain.on(EventsEnum.START_BENCH, async(event, formData) => {
+            const b = await BencmarkFabric.create(formData);
 
             b.onStart(benchData => {
                 event.sender.send(EventsEnum.BENCH_STARTED, benchData);

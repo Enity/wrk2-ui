@@ -1,25 +1,19 @@
 import path from 'path';
 import crypto from 'crypto';
 import { Benchmark } from './Benchmark';
-import util from 'util';
-const execFile = util.promisify(require('child_process').execFile);
+import { LuaScriptBuilder } from './luaScript/LuaScriptBuilder';
 
 /**
  * @static
  */
 export class BencmarkFabric {
-    static create(formData) {
+    static async create(formData) {
         const command = {
             path: this._getWrkLibPath(),
-            args: this._getArgStringFromForm(formData)
+            args: await this._buildArgs(formData)
         };
         const id = crypto.randomBytes(3 * 4).toString('base64');
         return new Benchmark(command, id, formData);
-    }
-
-    static async testRun() {
-        const args = ['-t1', '-c1', '-d1s', '-R1', '-s', this._getReportScriptPath(), 'http://127.0.0.1'];
-        return execFile(this._getWrkLibPath(), args);
     }
 
     static _getWrkLibPath() {
@@ -33,15 +27,34 @@ export class BencmarkFabric {
         return pathTolib;
     }
 
+    static async _buildArgs(formData) {
+        const simpleArgs = this._getArgStringFromForm(formData);
+        if (!formData.hasAdvanced) {
+            simpleArgs.push('-s', this._getReportScriptPath());
+        } else {
+            const advFields = formData.advanced;
+
+            const builder = new LuaScriptBuilder()
+                .setMethod(advFields.type)
+                .addBody(advFields.body)
+                .addHeaders(advFields.headers);
+            await builder.addFromFile(this._getReportScriptPath());
+            const script = builder.build();
+
+            const savedScriptPath = await script.saveToTmpFile();
+            simpleArgs.push('-s', savedScriptPath);
+        }
+        return simpleArgs;
+    }
+
     static _getArgStringFromForm({
         target, connections, threads, duration, requests
     }) {
         return [
-            ['-t'], threads,
-            ['-c'], connections,
-            ['-d'], duration,
-            ['-R'], requests,
-            ['-s'], this._getReportScriptPath(),
+            '-t', threads,
+            '-c', connections,
+            '-d', duration,
+            '-R', requests,
             target
         ];
     }

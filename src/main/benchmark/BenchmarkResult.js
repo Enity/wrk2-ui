@@ -3,10 +3,18 @@ export class BenchmarkResult {
         this.summary = {};
         this.requests = {};
         this.latency = {};
+        this.raw = '';
         this._parseRawData(rawData);
     }
 
-    _parseRawData(data) {
+    _parseRawData(rawData) {
+        const reports = rawData.split('CUSTOM_REPORT');
+        const customPartOfReport = reports[1];
+        this.raw = reports[0];
+        this._parseData(customPartOfReport);
+    }
+
+    _parseData(data) {
         try {
             const { summary, latency } = JSON.parse(data);
             const duration = (((summary.duration / 1000) % 60000) / 1000).toFixed(2);
