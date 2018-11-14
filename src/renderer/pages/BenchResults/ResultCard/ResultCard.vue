@@ -13,14 +13,16 @@
             </span>
         </div>
         <div class="body">
-            <div v-if="!state.finished">
-                <Loader size='medium'/>
-            </div>
-            <div v-if="state.finished && state.error">
-                <span class='errorMsg'>
-                    {{ state.errorMsg }}
-                </span>
-            </div>
+            <Loader
+                v-if="!state.finished" 
+                size='medium'
+            />
+            <span 
+                v-if="state.finished && state.error"
+                class='errorMsg'
+            >
+                {{ state.errorMsg }}
+            </span>
             <Body
                 v-if="state.finished && !state.error"
                 :result='result'
@@ -79,6 +81,7 @@ export default {
 
 .body {
     display: flex;
+    min-height: 100px;
     justify-content: center;
     align-items: center;
 }

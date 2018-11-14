@@ -403,7 +403,12 @@ end
 done = function(summary, l, r)
     io.write("CUSTOM_REPORT\n")
 
-    latency = { max=l.max, min=l.min, average=l.mean, stdev=l.stdev }
+    latency = {
+        max=l.max ~= l.max and 0 or l.max,
+        min=l.min ~= l.min and 0 or l.min,
+        average=l.mean~= l.mean and 0 or l.mean,
+        stdev=l.stdev~= l.stdev and 0 or l.stdev
+    }
 
     requests = {
         max=r.max ~= r.max and 0 or r.max,

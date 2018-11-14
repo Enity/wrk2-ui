@@ -63,7 +63,7 @@ export default {
                 duration: 20,
                 connections: 300,
                 requests: 2000,
-                hasAdvanced: true,
+                hasAdvanced: false,
                 advanced: {
                     type: 'POST',
                     body: {
