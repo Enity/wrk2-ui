@@ -1,11 +1,10 @@
 {
-    "name": "http-bench-app",
+    "name": "wrk-2-ui",
     "version": "1.0.0",
-    "author": "boroda <enity.w@gmail.com>",
+    "author": "Boroda <enity.w@gmail.com>",
     "description": "simple gui over wrk2",
     "license": "MIT",
-    "private": true,
-    "repository": "https://enity@bitbucket.org/enity/http-bench-app.git",
+    "repository": "https://github.com/Enity/wrk2-ui",
     "main": "./dist/electron/main.js",
     "scripts": {
         "build": "node .electron-vue/build.js",
